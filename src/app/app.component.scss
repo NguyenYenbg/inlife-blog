@@ -1,0 +1,14 @@
+.banner {
+  background: url(../assets/banner.avif) no-repeat center;
+  background-size: cover;
+  background-position: right;
+  & h1{
+    font-weight: 700;
+    font-size: 40px;
+    text-shadow: 2px 2px 4px #000000;
+  }
+  & p{
+    font-weight: 500;
+    text-shadow: 2px 2px 4px #000000;
+  }
+}

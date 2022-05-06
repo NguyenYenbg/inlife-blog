@@ -1,0 +1,19 @@
+.content {
+  &__search {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e0dbdb;
+    color: #07689f;
+    font-size: 1rem;
+    font-weight: 500;
+    & i {
+      margin-left: 8px;
+      width: 10%;
+    }
+    & input {
+      border: none;
+      outline: none;
+      width: 80%;
+      padding: 8.5px;
+    }
+  }
+}

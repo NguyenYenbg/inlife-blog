@@ -1,0 +1,21 @@
+<app-particle></app-particle>
+<ngx-spinner
+  bdColor="#fff0"
+  size="large"
+  color="#5d99c6"
+  type="ball-scale-multiple"
+>
+  <p style="font-size: 20px; color: #5d99c6">Loading...</p>
+</ngx-spinner>
+<div class="container-fluid bg-p-dark">
+  <app-nav-bar></app-nav-bar>
+</div>
+<div
+  class="banner container-fluid bg-p-light text-center py-5 text-white"
+  *ngIf="authService.isAuthenticated() === false"
+>
+  <h1>InLife</h1>
+  <p>Let's share the best things together!</p>
+</div>
+<router-outlet></router-outlet>
+<app-footer></app-footer>

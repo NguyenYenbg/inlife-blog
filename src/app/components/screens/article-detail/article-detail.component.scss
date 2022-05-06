@@ -1,0 +1,66 @@
+.btn-tag{
+  border: 1px solid #FF7E67;
+  color: #FF7E67;
+}
+.btn-width {
+  width: 115px;
+}
+
+.tag-item {
+  cursor: text !important;
+}
+
+.date {
+  font-size: small;
+  color: #0000004d;
+}
+
+.arrow-left {
+  position: relative;
+}
+
+.arrow-left::before {
+  content: "";
+  border-width: 30px 30px;
+  border-style: solid;
+  border-color: transparent transparent white transparent;
+  position: absolute;
+  left: -45px;
+  top: 1px;
+  transform: rotate(-90deg);
+}
+
+.btn-action {
+  border-color: #FF7E67;
+  color: #FF7E67;
+  &.btn-delete {
+    &:hover {
+      border-color: red;
+      color: red;
+    }
+  }
+  &.btn-edit {
+    border-color: #04af04;
+    color: #04af04;
+    &:hover {
+      border-color: green;
+      color: green;
+    }
+  }
+}
+
+.icon-delete {
+  position: relative;
+  svg {
+    position: absolute;
+    top: 4px;
+    left: -15px;
+  }
+}
+
+.icon-d-comment {
+  color: #FF7E67;
+  &:hover {
+    color: red;
+  }
+}

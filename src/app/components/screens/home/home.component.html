@@ -1,0 +1,56 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-lg-9 order-1 order-lg-0">
+      <nav class="bg-white">
+        <div class="nav nav-tabs text-p-dark">
+          <span
+            class="nav-link font-weight-bold cursor-pointer"
+            [class.active]="mode === 'myFeedMode'"
+            (click)="myFeedMode()"
+            *ngIf="authService.isAuthenticated()"
+            >My Feed</span
+          >
+          <span
+            class="nav-link font-weight-bold cursor-pointer"
+            [class.active]="mode === 'myGlobalMode'"
+            (click)="myGlobalMode()"
+            >Global Feed</span
+          >
+          <span
+            class="nav-link font-weight-bold cursor-pointer"
+            [class.active]="mode === 'tagMode'"
+            (click)="tagMode()"
+            *ngIf="selectedTag !== ''"
+            >#{{ selectedTag }}</span
+          >
+        </div>
+      </nav>
+      <div class="tab-content">
+        <div class="tab-pane fade show active">
+          <app-my-feed *ngIf="mode === 'myFeedMode'"></app-my-feed>
+          <app-global-feed
+            *ngIf="mode === 'myGlobalMode'"
+            (tagFromFeed)="getTagFromGlobalFeed($event)"
+          ></app-global-feed>
+          <app-tag-feed
+            *ngIf="mode === 'tagMode'"
+            [selectedTag]="selectedTag"
+          ></app-tag-feed>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 order-0 mb-4 order-lg-1 tags-grow">
+      <div class="popular-tags bg-light p-1 pb-2 shadow bg-white">
+        <h6 class="pl-1 pt-1 pb-2 border-bottom mb-1-5">Popular Tags:</h6>
+        <div class="listtags d-flex flex-wrap">
+          <a
+            class="tag-item btn bg-warning text-white m-1 py-0 rounded-pill"
+            *ngFor="let tag of listTags"
+            (click)="openTagFeed(tag)"
+            >#{{ tag }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

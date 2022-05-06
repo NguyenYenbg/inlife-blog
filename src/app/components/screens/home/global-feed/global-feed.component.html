@@ -1,0 +1,25 @@
+<div class="container pb-5 px-0">
+  <div class="row mt-3">
+    <div class="col">
+      <div class="content__search">
+        <i class="bi bi-search"></i>
+        <input
+          type="text"
+          placeholder="Search in inlife ..."
+          #search
+          (keyup)="onKeyUp(search.value)"
+        />
+      </div>
+    </div>
+  </div>
+  <div *ngFor="let globalFeed of filteredFeeds">
+    <app-article-card [data]="globalFeed"></app-article-card>
+  </div>
+  <app-pagination
+    *ngIf="loadDone"
+    [totalItems]="totalItems"
+    [itemPerpage]="itemsPerPage"
+    (onPageChange)="handlePageChange($event)"
+    (tagFromCard)="getTagFromCard($event)"
+  ></app-pagination>
+</div>

@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "inlife-370b7": {
+      "hosting": {
+        "inlife-blog-website": [
+          "inlife-370b7"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+$primary:#07689F;
+$secondary:#C9D6DF;
+$success:#11D3BC;
+$danger:#F67280;
+$info:#A2D5F2;
+$warning:#FF7E67;
+$light:#FAFAFA;
+$dark:#4e4e4e;
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.text-p-dark {
+  color: $primary;
+}
+
+.bg-p-dark {
+  background-color: $primary;
+}
+
+.btn-outline-p-dark {
+  border-color: $danger;
+  color: $danger;
+}
+
+.btn-outline-p-dark:hover {
+  border-color: #ff5334 ;
+  color: #ff5334 ;
+}
+
+.border-p-dark {
+  color: $danger;
+}
+
+.active2 {
+  background-color: $danger !important;
+  color: white !important;
+}
+
+.tag-item:hover {
+  background-color: $secondary;
+}
+
+.opacity-custom {
+  opacity: 0.5;
+}
+
+.pt-6 {
+  padding-top: 100px;
+}
+
+.bg-img {
+  background: url(./assets/anhbia1.jpg) no-repeat center;
+  background-size: cover;
+}
+

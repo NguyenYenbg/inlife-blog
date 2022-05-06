@@ -1,0 +1,57 @@
+<nav *ngIf="!isEmpty">
+  <ul class="pagination d-flex justify-content-center">
+    <li
+      class="page-item bg-white shadow"
+      [class.disabled]="disablePreviousButton()"
+      (click)="previous()"
+    >
+      <span class="page-link text-p-dark">Previous</span>
+    </li>
+    <li
+      *ngIf="selectedPage > 4"
+      class="page-item bg-white shadow"
+      [class.active]="selectedPage === 0"
+      (click)="goToFirstPage()"
+    >
+      <span class="page-link text-p-dark">1</span>
+    </li>
+    <li *ngIf="selectedPage > 4" class="page-item bg-white shadow disabled">
+      <span class="page-link text-p-dark">...</span>
+    </li>
+    <li
+      class="page-item bg-white shadow"
+      *ngFor="let page of pages"
+      [class.active]="page === selectedPage"
+      (click)="goToPage(page)"
+    >
+      <span class="page-link text-p-dark">{{ page + 1 }}</span>
+    </li>
+    <li
+      class="page-item bg-white shadow disabled"
+      *ngIf="totalPages > 3 && selectedPage < totalPages - 3"
+    >
+      <span class="page-link text-p-dark">...</span>
+    </li>
+    <li
+      *ngIf="totalPages > 3 && selectedPage < totalPages - 3"
+      class="page-item bg-white shadow"
+      [class.active]="totalPages === selectedPage"
+      (click)="goToLastPage()"
+    >
+      <span class="page-link text-p-dark">{{ totalPages }}</span>
+    </li>
+    <li
+      class="page-item bg-white shadow"
+      [class.disabled]="disableNextButton()"
+      (click)="next()"
+    >
+      <span class="page-link text-p-dark">Next</span>
+    </li>
+  </ul>
+</nav>
+<div class="mt-2" *ngIf="isEmpty">
+  <span class="h6"
+    >No articles are here... yet.<br />Go to Global Feed and try to follow your
+    favorite authors to fill up your feed.</span
+  >
+</div>
