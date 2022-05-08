@@ -39,13 +39,6 @@ export class ArticleService {
     ) as Observable<MultiArticle>;
   }
 
-  //get Article
-  getArticle(): Observable<MultiArticle> {
-    return this.http.get(
-      config.apiUrl + '/articles'
-    ) as Observable<MultiArticle>;
-  }
-
   // Article Details
   getArticleDetail(slug: string): Observable<any> {
     return this.http.get(

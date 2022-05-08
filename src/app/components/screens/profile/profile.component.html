@@ -50,7 +50,7 @@
           <div class="ml-3">
             <div
               *ngIf="follow === false && currUsername !== userName"
-              class="btn py-0 btn-width btn-outline-p-dark"
+              class="btn py-0 btn-width btn-warning active text-white p-2"
               (click)="followed(currUsername)"
             >
               <svg
@@ -69,7 +69,7 @@
             </div>
             <div
               *ngIf="follow === true && currUsername !== userName"
-              class="btn py-0 btn-width btn-hover bg-p-dark text-white"
+              class="btn py-0 btn-width bg-warning text-white p-2"
               (click)="unFollowed(currUsername)"
             >
               <svg
