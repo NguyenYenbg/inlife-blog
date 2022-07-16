@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { switchMap } from 'rxjs/operators';
 import { ArticleService } from 'src/app/services/article.service';
 
 import { Profile } from 'src/app/_models/profile';
@@ -35,16 +36,20 @@ export class ProfileComponent implements OnInit {
       this.userName = localUser.username;
     }
 
-    this.route.params.subscribe((res: any) => {
-      this.selectedUser = res.id;
-    });
-    this.authService.getProfile(this.selectedUser).subscribe((res: any) => {
-      this.currProfile = res;
-      this.currUsername = res.profile.username;
-      this.currProfile.profile.image = this.currProfile.profile.image
-        ? this.currProfile.profile.image
-        : 'https://static.productionready.io/images/smiley-cyrus.jpg';
-    });
+    this.route.params
+      .pipe(
+        switchMap((res) => {
+          this.selectedUser = res.id;
+          return this.authService.getProfile(this.selectedUser);
+        })
+      )
+      .subscribe((res: any) => {
+        this.currProfile = res;
+        this.currUsername = res.profile.username;
+        this.currProfile.profile.image = this.currProfile.profile.image
+          ? this.currProfile.profile.image
+          : 'https://static.productionready.io/images/smiley-cyrus.jpg';
+      });
   }
 
   openSpinner(timeLoad) {

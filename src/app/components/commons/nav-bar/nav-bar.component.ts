@@ -19,12 +19,7 @@ export class NavBarComponent implements OnInit {
     private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit(): void {
-    if (this.authService.isAuthenticated()) {
-      let localUser = JSON.parse(localStorage.getItem('user'));
-      this.userName = localUser.username;
-    }
-  }
+  ngOnInit(): void {}
 
   openSpinner(timeLoad) {
     this.spinner.show();
@@ -38,6 +33,10 @@ export class NavBarComponent implements OnInit {
   }
 
   goToMyArticles(): void {
+    if (this.authService.isAuthenticated()) {
+      let localUser = JSON.parse(localStorage.getItem('user'));
+      this.userName = localUser.username;
+    }
     this.router.navigateByUrl(`/profile/${this.userName}`);
   }
 
