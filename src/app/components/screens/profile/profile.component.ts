@@ -45,6 +45,7 @@ export class ProfileComponent implements OnInit {
       )
       .subscribe((res: any) => {
         this.currProfile = res;
+        this.follow = res.profile.following;
         this.currUsername = res.profile.username;
         this.currProfile.profile.image = this.currProfile.profile.image
           ? this.currProfile.profile.image
@@ -71,16 +72,12 @@ export class ProfileComponent implements OnInit {
   followed(userName) {
     this.follow = true;
     // this.articleDetail.article.author.following = true;
-    this.articleService.followUser(userName).subscribe((res) => {
-      // console.log(res);
-    });
+    this.articleService.followUser(userName).subscribe((res) => {});
   }
 
   unFollowed(userName) {
     this.follow = false;
     // this.articleDetail.article.author.following = false;
-    this.articleService.unFollowUser(userName).subscribe((res) => {
-      // console.log(res);
-    });
+    this.articleService.unFollowUser(userName).subscribe((res) => {});
   }
 }
