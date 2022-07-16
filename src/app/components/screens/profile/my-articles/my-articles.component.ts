@@ -16,9 +16,12 @@ export class MyArticlesComponent implements OnInit {
 
   constructor(private articleService: ArticleService) {}
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
+    console.log(this.selectedUser);
     this.getMyArticles(this.selectedUser, 0, this.itemsPerPage);
   }
+
+  ngOnInit(): void {}
 
   getMyArticles(username: string, skip: number, top: number) {
     this.articleService

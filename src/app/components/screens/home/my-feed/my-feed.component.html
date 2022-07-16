@@ -1,11 +1,21 @@
-<div class="container pb-5 px-0">
-  <div *ngFor="let myFeed of myFeeds">
-    <app-article-card [data]="myFeed"></app-article-card>
+<ng-container *ngIf="myFeeds.length > 0; else noData">
+  <div class="container pb-5 px-0">
+    <div *ngFor="let myFeed of myFeeds">
+      <app-article-card [data]="myFeed"></app-article-card>
+    </div>
+    <app-pagination
+      *ngIf="loadDone"
+      [totalItems]="totalItems"
+      [itemPerpage]="itemsPerPage"
+      (onPageChange)="handlePageChange($event)"
+    ></app-pagination>
   </div>
-  <app-pagination
-    *ngIf="loadDone"
-    [totalItems]="totalItems"
-    [itemPerpage]="itemsPerPage"
-    (onPageChange)="handlePageChange($event)"
-  ></app-pagination>
-</div>
+</ng-container>
+<ng-template #noData>
+  <div class="mt-2">
+    <span class="h6"
+      >No articles are here... yet.<br />Go to Global Feed and try to follow
+      your favorite authors to fill up your feed.</span
+    >
+  </div>
+</ng-template>

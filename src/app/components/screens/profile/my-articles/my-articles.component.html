@@ -1,11 +1,19 @@
-<div class="container pb-5 px-0">
-  <div *ngFor="let article of myArticles">
-    <app-article-card [data]="article"></app-article-card>
+<ng-container *ngIf="myArticles.length > 0; else noData">
+  <div class="container pb-5 px-0">
+    <div *ngFor="let article of myArticles">
+      <app-article-card [data]="article"></app-article-card>
+    </div>
+    <app-pagination
+      *ngIf="loadDone"
+      [totalItems]="totalItems"
+      [itemPerpage]="itemsPerPage"
+      (onPageChange)="handlePageChange($event)"
+    ></app-pagination>
   </div>
-  <app-pagination
-    *ngIf="loadDone"
-    [totalItems]="totalItems"
-    [itemPerpage]="itemsPerPage"
-    (onPageChange)="handlePageChange($event)"
-  ></app-pagination>
-</div>
+</ng-container>
+
+<ng-template #noData>
+  <div class="mt-2">
+    <span class="h6">No articles are here... yet.</span>
+  </div>
+</ng-template>

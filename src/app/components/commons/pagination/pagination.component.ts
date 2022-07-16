@@ -18,9 +18,7 @@ export class PaginationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.isEmpty = this.totalItems ? false : true;
-  }
+  ngOnInit(): void {}
 
   ngOnChanges() {
     this.totalPages = Math.ceil(this.totalItems / this.itemsPerpage);
@@ -59,7 +57,6 @@ export class PaginationComponent implements OnInit {
   }
 
   goToLastPage() {
-
     this.selectedPage = this.totalPages - 1;
     this.onPagesChange.emit(this.totalPages);
     this.disablePreviousButton();
