@@ -60,7 +60,7 @@ export class NewArticleComponent implements OnInit {
         this.newArticleForm.patchValue({
           tagList: tagList,
         });
-        console.log(this.newArticleForm.value);
+        // console.log(this.newArticleForm.value);
         this.savedDraft = false;
         this.errorOccurs = false;
         this.isPublished = true;

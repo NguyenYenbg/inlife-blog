@@ -55,7 +55,10 @@ export class ArticleService {
   editArticle(updatedBody: any, slug: string): Observable<any> {
     return this.http.put(config.apiUrl + `/articles/${slug}`, {
       article: {
-        ...updatedBody,
+        title: updatedBody.title,
+        description: updatedBody.description,
+        body: updatedBody.body,
+        tagList: updatedBody?.tagList ? updatedBody.tagList.split(', ') : [],
       },
     }) as Observable<any>;
   }
@@ -67,7 +70,7 @@ export class ArticleService {
         title: formValue.title,
         description: formValue.description,
         body: formValue.body,
-        tagList: formValue?.tagList ? formValue.tagList : [],
+        tagList: formValue?.tagList ? formValue.tagList.split(', ') : [],
       },
     });
   }
