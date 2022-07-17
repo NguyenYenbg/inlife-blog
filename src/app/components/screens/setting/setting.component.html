@@ -3,95 +3,90 @@
     <div class="col-8 mt-4 mx-auto bg-white shadow pb-3">
       <h1 class="text-center text-p-dark my-4">Your Settings</h1>
       <form [formGroup]="settingForm">
-        <div *ngIf="!changingPassword">
-          <div class="form-group">
-            <label for="image" class="text-p-dark font-weight-bold"
-              >URL of your profile picture:</label
-            >
-            <input
-              type="url"
-              class="form-control"
-              id="image"
-              placeholder="URL of profile picture"
-              formControlName="image"
-              (input)="cfPasswordNoti()"
-            />
-          </div>
-          <div class="form-group">
-            <label for="username" class="text-p-dark font-weight-bold"
-              >Your username</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              placeholder="Your username"
-              formControlName="username"
-              required
-              minlength="1"
-              (input)="cfPasswordNoti()"
-            />
-            <small
-              class="text-danger"
-              *ngIf="settingForm.controls.username.errors?.minlength"
-            >
-              * Your username is too short.
-            </small>
-            <small
-              class="text-danger"
-              *ngIf="
-                settingForm.controls.username.errors?.required &&
-                settingForm.controls.username.touched
-              "
-            >
-              * Your username is required.
-            </small>
-          </div>
-          <div class="form-group">
-            <label for="bio" class="text-p-dark font-weight-bold"
-              >Your bio:</label
-            >
-            <textarea
-              rows="8"
-              class="form-control"
-              id="bio"
-              placeholder="Short bio about you"
-              formControlName="bio"
-              (input)="cfPasswordNoti()"
-            ></textarea>
-          </div>
-          <div class="form-group">
-            <label for="email" class="text-p-dark font-weight-bold"
-              >Your email address:</label
-            >
-            <input
-              type="email"
-              autocomplete="email"
-              class="form-control"
-              id="email"
-              placeholder="Your email address"
-              formControlName="email"
-              required
-              (input)="cfPasswordNoti()"
-            />
-            <small
-              class="text-danger"
-              *ngIf="settingForm.controls.email.errors?.invalid"
-            >
-              * Your email is invalid.
-            </small>
-            <small
-              class="text-danger"
-              *ngIf="
-                settingForm.controls.email.errors?.required &&
-                settingForm.controls.email.touched
-              "
-            >
-              * Your email is required.
-            </small>
+        <div class="form-group">
+          <label for="username" class="text-p-dark font-weight-bold"
+            >Your username</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Your username"
+            formControlName="username"
+            disabled
+          />
+          <small
+            class="text-danger"
+            *ngIf="settingForm.controls.username.errors?.minlength"
+          >
+            * Your username is too short.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              settingForm.controls.username.errors?.required &&
+              settingForm.controls.username.touched
+            "
+          >
+            * Your username is required.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="image" class="text-p-dark font-weight-bold"
+            >URL of your profile picture:</label
+          >
+          <input
+            type="url"
+            class="form-control"
+            id="image"
+            placeholder="URL of profile picture"
+            formControlName="image"
+          />
+          <div class="image-demo mt-2 ml-3">
+            <img [src]="settingForm.value.image" class="rounded" alt="" />
           </div>
         </div>
-        <div class="form-group" *ngIf="needConfirm || changingPassword">
+        <div class="form-group">
+          <label for="bio" class="text-p-dark font-weight-bold"
+            >Your bio:</label
+          >
+          <textarea
+            rows="8"
+            class="form-control"
+            id="bio"
+            placeholder="Short bio about you"
+            formControlName="bio"
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="email" class="text-p-dark font-weight-bold"
+            >Your email address:</label
+          >
+          <input
+            type="email"
+            autocomplete="email"
+            class="form-control"
+            id="email"
+            placeholder="Your email address"
+            formControlName="email"
+          />
+          <small
+            class="text-danger"
+            *ngIf="settingForm.controls.email.errors?.invalid"
+          >
+            * Your email is invalid.
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="
+              settingForm.controls.email.errors?.required &&
+              settingForm.controls.email.touched
+            "
+          >
+            * Your email is required.
+          </small>
+        </div>
+        <!-- <div class="form-group" *ngIf="needConfirm || changingPassword">
           <div class="form-group" *ngIf="!changingPassword">
             <small class="text-warning">
               * We need your password for this change.
@@ -164,17 +159,17 @@
               * Your confirm-password length is not matched.
             </small>
           </div>
-        </div>
+        </div> -->
         <div class="text-right" *ngIf="!isSuccess">
-          <button
+          <!-- <button
             type="button"
             class="btn btn-outline-p-dark text-p-dark m-1"
             (click)="changePassword()"
             *ngIf="!changingPassword"
           >
             Change Password
-          </button>
-          <button
+          </button> -->
+          <!-- <button
             type="button"
             class="btn btn-outline-p-dark text-p-dark m-1"
             (click)="backPersonal()"
@@ -198,7 +193,7 @@
               />
             </svg>
             <span>Personal settings</span>
-          </button>
+          </button> -->
           <button
             type="submit"
             class="btn btn-custom btn-outline-p-dark active2 px-3 text-white m-1"

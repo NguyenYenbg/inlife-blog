@@ -14,17 +14,8 @@ export class SettingsService {
   }
 
   updateSettings(settingFormValue: any) {
-    return new Promise<void>((resolve, reject) => {
-      this.http
-        .put(config.apiUrl + '/user', { user: { ...settingFormValue } })
-        .subscribe(
-          (res: any) => {
-            resolve();
-          },
-          (err: any) => {
-            reject(err);
-          }
-        );
+    return this.http.put(config.apiUrl + '/user', {
+      user: { ...settingFormValue },
     });
   }
 }

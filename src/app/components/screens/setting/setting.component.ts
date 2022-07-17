@@ -1,3 +1,5 @@
+import { AuthService } from './../../../_services/auth.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { SettingsService } from 'src/app/services/settings.service';
 import { Router } from '@angular/router';
@@ -10,6 +12,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SettingComponent implements OnInit {
   settingForm: FormGroup;
+  passwordForm: FormGroup;
   private userName: string = '';
   private localUser: any = {};
 
@@ -21,10 +24,13 @@ export class SettingComponent implements OnInit {
 
   constructor(
     private settingsService: SettingsService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    private auth: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     this.settingForm = new FormGroup({
       image: new FormControl(''),
       username: new FormControl('', [
@@ -34,24 +40,15 @@ export class SettingComponent implements OnInit {
       ]),
       bio: new FormControl(''),
       email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
-      cfPassword: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-      ]),
     });
 
     this.localUser = JSON.parse(localStorage.getItem('user'));
     this.userName = this.localUser.username;
 
     this.settingsService.getSettings(this.userName).subscribe((res: any) => {
+      this.spinner.hide();
       this.settingForm.setValue({
         email: this.localUser.email,
-        password: '',
-        cfPassword: '',
         bio: res.profile.bio,
         image: res.profile.image,
         username: res.profile.username,
@@ -60,30 +57,35 @@ export class SettingComponent implements OnInit {
   }
 
   updateSettings(): void {
-    console.log(this.settingForm);
+    // console.log(this.settingForm);
+    this.spinner.show();
     this.needConfirm = true;
-    this.settingsService
-      .updateSettings(this.settingForm.value)
-      .then((res: any) => {
+    this.settingsService.updateSettings(this.settingForm.value).subscribe(
+      (res: any) => {
         this.isSuccess = true;
         this.isTaken = false;
+        this.spinner.hide();
+        console.log(res);
+
+        localStorage.setItem('user', JSON.stringify(res.user));
         // console.log('setting updated');
         setTimeout(() => {
-          this.router.navigate([`/profile/${this.userName}`]);
-        }, 2000);
-      })
-      .catch((err: any) => {
+          this.router.navigate([`/profile/${res.user.username}`]);
+        }, 5000);
+      },
+      (err: any) => {
         this.isSuccess = false;
+        this.spinner.hide();
         this.isTaken = true;
         // console.log('setting errors');
         console.log(err);
-      });
+      }
+    );
   }
 
   isValidPassword() {
     this.isSamePW =
-      this.settingForm.value.password.length ===
-      this.settingForm.value.cfPassword.length
+      this.passwordForm.value.password === this.passwordForm.value.cfPassword
         ? true
         : false;
   }
