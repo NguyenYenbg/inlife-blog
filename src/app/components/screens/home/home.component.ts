@@ -39,23 +39,23 @@ export class HomeComponent implements OnInit {
 
   myFeedMode() {
     this.mode = 'myFeedMode';
-    this.openSpinner(300);
+    // this.openSpinner(300);
   }
 
   myGlobalMode() {
     this.mode = 'myGlobalMode';
-    this.openSpinner(1000);
+    // this.openSpinner(1000);
   }
 
   tagMode() {
     this.mode = 'tagMode';
-    this.openSpinner(900);
+    // this.openSpinner(900);
   }
 
   openTagFeed(tag: string): void {
     this.mode = 'tagMode';
     this.selectedTag = tag;
-    this.openSpinner(900);
+    // this.openSpinner(900);
   }
 
   getTagFromGlobalFeed(tagName: string) {

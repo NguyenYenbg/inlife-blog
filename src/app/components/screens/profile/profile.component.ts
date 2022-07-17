@@ -31,9 +31,11 @@ export class ProfileComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.spinner.show();
     if (this.authService.isAuthenticated()) {
       let localUser = JSON.parse(localStorage.getItem('user'));
       this.userName = localUser.username;
+      // console.log(this.userName);
     }
 
     this.route.params
@@ -44,6 +46,8 @@ export class ProfileComponent implements OnInit {
         })
       )
       .subscribe((res: any) => {
+        // console.log(res);
+
         this.currProfile = res;
         this.follow = res.profile.following;
         this.currUsername = res.profile.username;
@@ -53,16 +57,15 @@ export class ProfileComponent implements OnInit {
       });
   }
 
-  openSpinner(timeLoad) {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, timeLoad);
-  }
+  // openSpinner(timeLoad) {
+  //   this.spinner.show();
+  //   setTimeout(() => {
+  //     this.spinner.hide();
+  //   }, timeLoad);
+  // }
 
   switchTab(): void {
     this.onSelected = !this.onSelected;
-    this.openSpinner(200);
   }
 
   logout(): void {
