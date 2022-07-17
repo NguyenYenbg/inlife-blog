@@ -14,7 +14,7 @@ export class PaginationComponent implements OnInit {
   totalPages: number = 0;
   pages: any[] = [];
   selectedPage: number = 0;
-  isEmpty: boolean = true;
+  // isEmpty: boolean = true;
 
   constructor() {}
 

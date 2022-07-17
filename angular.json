@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "inlife-blog-website"
+  "defaultProject": "inlife-blog-website",
+  "cli": {
+    "analytics": false
+  }
 }
